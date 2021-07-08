@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true vincentyuuu/docker-react-practice yarn test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react-practice"
+  env: "Dockerreactpractice-env"
+  bucket_name: "elasticbeanstalk-us-east-2-794088892891"
+  bucket_path: "docker-react-practice"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
